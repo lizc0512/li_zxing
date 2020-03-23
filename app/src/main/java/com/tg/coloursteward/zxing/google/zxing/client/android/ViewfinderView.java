@@ -47,6 +47,20 @@ public final class ViewfinderView extends View {
     private static final int MAX_RESULT_POINTS = 20;
     private static final int POINT_SIZE = 6;
 
+    /**
+     * 四个绿色边角对应的长度
+     */
+    private int ScreenRate;
+
+    /**
+     * 四个绿色边角对应的宽度
+     */
+    private static final int CORNER_WIDTH = 10;
+    /**
+     * 手机的屏幕密度
+     */
+    private static float density;
+
     private CameraManager cameraManager;
     private final Paint paint;
     private Bitmap resultBitmap;
@@ -61,7 +75,9 @@ public final class ViewfinderView extends View {
     // This constructor is used when the class is built from an XML resource.
     public ViewfinderView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
+        density = context.getResources().getDisplayMetrics().density;
+        //将像素转换成dp
+        ScreenRate = (int) (20 * density);
         // Initialize these once for performance rather than calling them every time in onDraw().
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         Resources resources = getResources();
@@ -104,6 +120,24 @@ public final class ViewfinderView extends View {
             paint.setAlpha(CURRENT_POINT_OPACITY);
             canvas.drawBitmap(resultBitmap, null, frame, paint);
         } else {
+            //画扫描框边上的角，总共8个部分
+            paint.setColor(0xEF95429a);
+            canvas.drawRect(frame.left, frame.top, frame.left + ScreenRate,
+                    frame.top + CORNER_WIDTH, paint);
+            canvas.drawRect(frame.left, frame.top, frame.left + CORNER_WIDTH, frame.top
+                    + ScreenRate, paint);
+            canvas.drawRect(frame.right - ScreenRate, frame.top, frame.right,
+                    frame.top + CORNER_WIDTH, paint);
+            canvas.drawRect(frame.right - CORNER_WIDTH, frame.top, frame.right, frame.top
+                    + ScreenRate, paint);
+            canvas.drawRect(frame.left, frame.bottom - CORNER_WIDTH, frame.left
+                    + ScreenRate, frame.bottom, paint);
+            canvas.drawRect(frame.left, frame.bottom - ScreenRate,
+                    frame.left + CORNER_WIDTH, frame.bottom, paint);
+            canvas.drawRect(frame.right - ScreenRate, frame.bottom - CORNER_WIDTH,
+                    frame.right, frame.bottom, paint);
+            canvas.drawRect(frame.right - CORNER_WIDTH, frame.bottom - ScreenRate,
+                    frame.right, frame.bottom, paint);
 
             // Draw a red "laser scanner" line through the middle to show decoding is active
             paint.setColor(laserColor);
