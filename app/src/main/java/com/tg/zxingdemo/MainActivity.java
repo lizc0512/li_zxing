@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tg.coloursteward.zxing.google.zxing.client.android.CaptureActivity;
+import com.tg.test.zxing.google.zxing.client.android.CaptureActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

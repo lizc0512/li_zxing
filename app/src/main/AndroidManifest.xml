@@ -6,13 +6,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <!-- unavailable in API 23 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- unavailable in API 23 -->
     <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
 
     <uses-feature android:name="android.hardware.camera.any" />
     <uses-feature
@@ -33,22 +31,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.tg.zxingdemo.MainActivity">
+        <activity android:name=".Ztest"></activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.CaptureActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.CaptureActivity"
             android:clearTaskOnLaunch="true"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             android:theme="@style/CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden">
-
             <intent-filter>
                 <action android:name="com.google.zxing.client.android.SCAN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <!-- Allow web apps to launch Barcode Scanner by linking to http://zxing.appspot.com/scan. -->
@@ -101,62 +101,69 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.PreferencesActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.PreferencesActivity"
             android:label="@string/preferences_name"
             android:stateNotNeeded="true" />
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.encode.EncodeActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.encode.EncodeActivity"
             android:stateNotNeeded="true">
             <intent-filter>
                 <action android:name="com.google.zxing.client.android.ENCODE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <!-- This allows us to handle the Share button in Contacts. -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/x-vcard" />
             </intent-filter>
             <!-- This allows us to handle sharing any plain text . -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.book.SearchBookContentsActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.book.SearchBookContentsActivity"
             android:label="@string/sbc_name"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true">
             <intent-filter>
                 <action android:name="com.google.zxing.client.android.SEARCH_BOOK_CONTENTS" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.share.ShareActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.share.ShareActivity"
             android:screenOrientation="user"
             android:stateNotNeeded="true">
             <intent-filter>
                 <action android:name="com.google.zxing.client.android.SHARE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.history.HistoryActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.history.HistoryActivity"
             android:label="@string/history_title"
             android:stateNotNeeded="true" />
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.share.BookmarkPickerActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.share.BookmarkPickerActivity"
             android:label="@string/bookmark_picker_name"
             android:stateNotNeeded="true" />
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.share.AppPickerActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.share.AppPickerActivity"
             android:label="@string/app_picker_name"
             android:stateNotNeeded="true" />
         <activity
-            android:name="com.tg.coloursteward.zxing.google.zxing.client.android.HelpActivity"
+            android:name="com.tg.test.zxing.google.zxing.client.android.HelpActivity"
             android:label="@string/menu_help"
             android:screenOrientation="user"
             android:stateNotNeeded="true" />
