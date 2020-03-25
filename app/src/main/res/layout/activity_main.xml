@@ -10,10 +10,19 @@
         android:id="@+id/btn_Scan"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="扫码"
+        android:text="Zxing扫码"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_ScanBga"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="BGAQRCode扫码"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_Scan" />
 
     <TextView
         android:id="@+id/tv_result"

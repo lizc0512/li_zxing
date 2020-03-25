@@ -9,17 +9,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.tg.test.zxing.google.zxing.client.android.CaptureActivity;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.tg.test.zxing.google.zxing.client.android.CaptureActivity;
+
 public class MainActivity extends AppCompatActivity {
     private Button btnScan;
+    private Button btnScanBga;
     private TextView tvResult;
+    private int typeSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +32,35 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         btnScan = findViewById(R.id.btn_Scan);
+        btnScanBga = findViewById(R.id.btn_ScanBga);
         tvResult = findViewById(R.id.tv_result);
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (checkPermission()) {
-                    openScan();
+                    typeSelect = 1;
+                    openScan(typeSelect);
+                }
+            }
+        });
+        btnScanBga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkPermission()) {
+                    typeSelect = 2;
+                    openScan(typeSelect);
                 }
             }
         });
     }
 
-    private void openScan() {
-        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+    private void openScan(int type) {
+        Intent intent;
+        if (1 == type) {
+            intent = new Intent(MainActivity.this, CaptureActivity.class);
+        } else {
+            intent = new Intent(MainActivity.this, BgaqrCodeActivity.class);
+        }
         startActivityForResult(intent, 100);
     }
 
@@ -71,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (0 == requestCode) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openScan();
+                openScan(typeSelect);
             } else {
                 Toast.makeText(this, "请打开拍照权限", Toast.LENGTH_SHORT).show();
             }
